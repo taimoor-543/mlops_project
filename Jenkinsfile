@@ -33,9 +33,10 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat 'docker run -d -p 5000:5000 ${DOCKER_IMAGE}'
-            }
-        }
+                 bat 'docker run -d -p 5000:5000 taimooraliata/mlops_project:latest'
+    }
+}
+
 
         stage('Notify Admin') {
             steps {
