@@ -16,17 +16,19 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t ${DOCKER_IMAGE} .'
+                bat 'docker build -t %DOCKER_IMAGE% .'
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
                 withDockerRegistry([credentialsId: 'docker-hub', url: '']) {
-                    bat 'docker push ${DOCKER_IMAGE}'
-                }
+                     bat 'docker tag mlops_project %DOCKER_IMAGE%'
+                     bat 'docker push %DOCKER_IMAGE%'
             }
-        }
+    }
+}
+
 
         stage('Deploy') {
             steps {
