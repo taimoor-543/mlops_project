@@ -16,13 +16,14 @@ pipeline {
 
         stage('Build Docker Image') {
             steps {
-                bat 'docker build -t %DOCKER_IMAGE% .'
-            }
-        }
+                bat 'docker build -t taimooraliata/mlops_project:latest .'
+    }
+}
+
         stage('Push to Docker Hub') {
             steps {
                 withDockerRegistry([credentialsId: 'docker-hub', url: 'https://index.docker.io/v1/']) {
-                    bat 'docker tag mlops_project taimooraliata/mlops_project'
+                    bat 'docker tag taimooraliata/mlops_project:latest taimooraliata/mlops_project'
                     bat 'docker push taimooraliata/mlops_project'
         }
     }
