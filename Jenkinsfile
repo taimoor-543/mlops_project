@@ -42,7 +42,7 @@ pipeline {
             steps {
                 emailext subject: 'Deployment Successful',
                          body: 'The project has been successfully deployed.',
-                         to: 'taimoorwastaken@gmail.com.com'
+                         to: 'taimoorwastaken@gmail.com'
             }
         }
     }
